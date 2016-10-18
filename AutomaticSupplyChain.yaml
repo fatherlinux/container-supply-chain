@@ -30,7 +30,7 @@ spec:
     dockerStrategy:
       from:
         kind: DockerImage
-        name: registry.access.redhat.com/library/rhel7:latest
+        name: registry.access.redhat.com/rhel7:latest
     type: Docker
   triggers:
   - github:
