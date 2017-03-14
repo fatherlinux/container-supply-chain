@@ -1,11 +1,19 @@
 Supply Chain Demo
 ======================================
 
-Manual Usage (Docker)
------
+
 This repository is meant to demonstrate a software supply chain that provides best practices for operations teams looking to  adopt containers in a production environment. 
 
-Deeper explaination will be followed up in a blog entry, but a technical person should be able to look at these docs and understand how to implement a sane container software supply chain. This particular implementation uses a Red Hat stack but these concepts apply equally to Ubuntu, Debian, CentOS or Fedora. 
+
+A technical person should be able to look at these docs and understand how to implement a sane container software supply chain. This particular implementation uses a Red Hat stack but these concepts apply equally to Ubuntu, Debian, CentOS or Fedora. 
+
+For a deeper explaination here is a blog entry which explains all of the concepts:
+
+http://rhelblog.redhat.com/2016/05/18/architecting-containers-part-5-building-a-secure-and-manageable-container-software-supply-chain/
+
+Manual Usage (Docker)
+-----
+This method requires nothing more than the docker damon and the make utility be installed.
 
 To build all images:
 ```
@@ -24,6 +32,8 @@ make push
 
 Automated Usage (OpenShift Single Project)
 -----------
+This method requires OpenShift or OpenShift Origin be installed and functioning.
+
 Build the supply chain:
 ```
 cd ~/
@@ -41,6 +51,8 @@ oc get builds
 
 Advanced Automated Usage (OpenShift Multiple Project)
 -----------
+This method requires OpenShift or OpenShift Origin be installed and functioning.
+
 Create development and operations projects:
 ```
 oc new-project operations
