@@ -11,7 +11,7 @@ RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-
     yum clean all && \
     rm -rf /var/cache/yum/*
 RUN yum update-minimal -y --security --sec-severity=Important --sec-severity=Critical --setopt=tsflags=nodocs && \
-    yum install -y --setopt=tsflags=nodocs deltarpm iputils net-tools nmap-ncat tcpdump tar && \
+    yum install -y --setopt=tsflags=nodocs deltarpm iputils net-tools nmap-ncat tcpdump tar gnupg2 && \
     yum clean all && \
     rm -rf /var/cache/yum/*
 
