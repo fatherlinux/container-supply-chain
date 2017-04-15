@@ -20,7 +20,7 @@ RUN mkdir -p /var/www/html && \
     mkdir -p /var/www/cgi-bin && \
     sed -i -f /root/contrib/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf && \
     sed -i '/php_value session.save_path/d' /opt/rh/httpd24/root/etc/httpd/conf.d/rh-php56-php.conf && \
-    sed -i 'LoadModule http2_module modules/mod_http2.so' /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-base.conf && \
+    sed -i '/LoadModule http2_module modules/mod_http2.so/d' /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-base.conf && \
     head -n151 /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf | tail -n1 | grep "AllowOverride All" || exit && \
     mkdir /tmp/sessions && \
     chmod -R a+rwx /etc/opt/rh/rh-php56 && \
