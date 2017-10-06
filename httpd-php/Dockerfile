@@ -6,7 +6,7 @@ MAINTAINER docker@softwarecollections.org
 ENV PHP_VERSION 5.6
 ENV HTTPD_VERSION 2.4
 
-RUN yum-config-manager --enable rhel-server-rhscl-7-rpms --enable rhel-7-server-optional-rpms && \
+RUN yum install -y --nogpgcheck centos-release-scl && \
     yum install -y --nogpgcheck --setopt=tsflags=nodocs httpd24 rh-php56 rh-php56-php rh-php56-php-fpm rh-php56-php-mysqlnd && \
     yum clean all && \
     rm -rf /var/cache/yum/*
