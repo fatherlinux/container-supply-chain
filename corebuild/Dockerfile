@@ -1,13 +1,9 @@
-FROM rhel7
+FROM centos
 MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
 
-RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils && \
-    yum-config-manager $(for i in `yum repolist enabled | awk '{print $1}' | awk 'BEGIN { FS = "/" } ; { print $1 }'`; do echo "--disable $i"; done) && \
-    yum-config-manager --enable rhel-7-server-rpms \
-                       --enable rhel-7-server-extras-rpms \
-                       --save --setopt skip_broken=1 && \
+RUN yum install -y --setopt=tsflags=nodocs yum-utils && \
     yum clean all && \
     rm -rf /var/cache/yum/*
 RUN yum update-minimal -y --security --sec-severity=Important --sec-severity=Critical --setopt=tsflags=nodocs && \
