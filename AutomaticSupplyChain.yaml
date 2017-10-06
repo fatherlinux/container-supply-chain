@@ -31,7 +31,7 @@ spec:
     dockerStrategy:
       from:
         kind: DockerImage
-        name: centos7
+        name: docker.io/centos7
     type: Docker
   triggers:
   - github:
