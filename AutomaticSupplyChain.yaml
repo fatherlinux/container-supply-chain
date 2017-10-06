@@ -25,6 +25,7 @@ spec:
     contextDir: corebuild
     git:
       uri: https://github.com/fatherlinux/container-supply-chain.git
+      ref: centos7
     type: Git
   strategy:
     dockerStrategy:
@@ -79,6 +80,7 @@ spec:
     contextDir: httpd-php
     git:
       uri: https://github.com/fatherlinux/container-supply-chain.git
+      ref: centos7
     type: Git
   strategy:
     dockerStrategy:
@@ -113,6 +115,7 @@ spec:
     contextDir: httpd-ruby
     git:
       uri: https://github.com/fatherlinux/container-supply-chain.git
+      ref: centos7
     type: Git
   strategy:
     dockerStrategy:
@@ -158,6 +161,7 @@ spec:
     contextDir: wordpress
     git:
       uri: https://github.com/fatherlinux/container-supply-chain.git
+      ref: centos7
     type: Git
   strategy:
     dockerStrategy:
