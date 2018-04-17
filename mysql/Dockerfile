@@ -5,6 +5,6 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms --enable rhel-7-server-
     yum install -y --nogpgcheck --setopt=tsflags=nodocs rh-mysql57 && \
     yum clean all && \
     rm -rf /var/cache/yum/*
-ADD ./enablerh-mysql57.sh /etc/profile.d/
+RUN systemctl enable rh-mysql57-mysqld
 EXPOSE 3306
-CMD ["run-mysqld"]
+CMD ["/sbin/init"]

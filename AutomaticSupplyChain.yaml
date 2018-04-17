@@ -175,3 +175,48 @@ spec:
   - type: ConfigChange
   - type: imageChange
     imageChange: {}
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mysql
+  name: mysql
+spec: {}
+status:
+  dockerImageRepository: ""
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: mysql
+  name: mysql
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: mysql:latest
+  resources: {}
+  source:
+    contextDir: mysql
+    git:
+      uri: https://github.com/fatherlinux/container-supply-chain.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: corebuild:latest
+    type: Docker
+  triggers:
+  - github:
+      secret: Jxx_nqGTx19G0fHE9o4U
+    type: GitHub
+  - generic:
+      secret: FCvPlf890_pHVDC-YAuM
+    type: Generic
+  - type: ConfigChange
+  - type: imageChange
+    imageChange: {}
