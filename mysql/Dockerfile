@@ -7,4 +7,5 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms --enable rhel-7-server-
     rm -rf /var/cache/yum/*
 RUN systemctl enable rh-mysql57-mysqld
 EXPOSE 3306
-CMD ["/sbin/init"]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/entrypoint.sh"]
