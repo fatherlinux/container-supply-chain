@@ -32,7 +32,7 @@ EXPOSE 3306
 # safe in the future. This should *never* change, the last test is there
 # to make sure of that.
 RUN yum install -y yum-utils && \
-    RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && \
+    yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     INSTALL_PKGS="rsync tar gettext hostname bind-utils groff-base shadow-utils rh-mysql57" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
