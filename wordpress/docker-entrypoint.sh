@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-source /opt/rh/rh-php56/enable
-export X_SCLS="`scl enable rh-php56 'echo $X_SCLS'`"
+source /opt/rh/rh-php72/enable
+export X_SCLS="`scl enable rh-php72 'echo $X_SCLS'`"
 
 if [ -e /cmd.sh ]; then
 	if [ -n "$MYSQL_PORT_3306_TCP" ]; then
