@@ -13,7 +13,7 @@ RUN { \
 		echo 'opcache.revalidate_freq=60'; \
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
-	} > /etc/opt/rh/rh-php56/opcache-recommended.ini
+	} > /etc/opt/rh/rh-php72/opcache-recommended.ini
 
 VOLUME /var/www/html
 
