@@ -1,4 +1,4 @@
-FROM ubi7
+FROM registry.access.redhat.com/ubi7/ubi
 MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
