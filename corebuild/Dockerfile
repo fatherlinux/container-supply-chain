@@ -1,4 +1,4 @@
-FROM centos
+FROM ubi7
 MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
