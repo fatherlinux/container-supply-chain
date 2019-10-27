@@ -13,20 +13,20 @@ all: build
 build: $(COREBUILD_NAME).o $(MW_COREBUILD_001).o $(MW_COREBUILD_002).o $(APPLICATION_BUILD_NAME).o
 
 $(COREBUILD_NAME).o: $(COREBUILD_NAME)/*
-	docker build -t $(COREBUILD_NAME) $(COREBUILD_NAME)/
-	@if docker images $(COREBUILD_NAME) | grep $(COREBUILD_NAME); then touch $(COREBUILD_NAME).o; fi
+	podman build -t $(COREBUILD_NAME) $(COREBUILD_NAME)/
+	@if podman images $(COREBUILD_NAME) | grep $(COREBUILD_NAME); then touch $(COREBUILD_NAME).o; fi
 
 $(MW_COREBUILD_001).o: $(MW_COREBUILD_001)/* $(COREBUILD_NAME).o
-	docker build -t $(MW_COREBUILD_001) $(MW_COREBUILD_001)/
-	@if docker images $(MW_COREBUILD_001) | grep $(MW_COREBUILD_001); then touch $(MW_COREBUILD_001).o; fi
+	podman build -t $(MW_COREBUILD_001) $(MW_COREBUILD_001)/
+	@if podman images $(MW_COREBUILD_001) | grep $(MW_COREBUILD_001); then touch $(MW_COREBUILD_001).o; fi
 
 $(MW_COREBUILD_002).o: $(MW_COREBUILD_002)/* $(COREBUILD_NAME).o
-	docker build -t $(MW_COREBUILD_002) $(MW_COREBUILD_002)/
-	@if docker images $(MW_COREBUILD_002) | grep $(MW_COREBUILD_002); then touch $(MW_COREBUILD_002).o; fi
+	podman build -t $(MW_COREBUILD_002) $(MW_COREBUILD_002)/
+	@if podman images $(MW_COREBUILD_002) | grep $(MW_COREBUILD_002); then touch $(MW_COREBUILD_002).o; fi
 
 $(APPLICATION_BUILD_NAME).o: $(APPLICATION_BUILD_NAME)/* $(MW_COREBUILD_001).o
-	docker build -t $(APPLICATION_BUILD_NAME) $(APPLICATION_BUILD_NAME)/
-	@if docker images $(APPLICATION_BUILD_NAME) | grep $(APPLICATION_BUILD_NAME); then touch $(APPLICATION_BUILD_NAME).o; fi
+	podman build -t $(APPLICATION_BUILD_NAME) $(APPLICATION_BUILD_NAME)/
+	@if podman images $(APPLICATION_BUILD_NAME) | grep $(APPLICATION_BUILD_NAME); then touch $(APPLICATION_BUILD_NAME).o; fi
 
 test:
 	env NAME=$(NAME) VERSION=$(VERSION) ./test.sh
@@ -35,22 +35,22 @@ clean:
 	rm ./*.o
 
 tag:
-	docker tag $(COREBUILD_NAME) $(REGISTRY_SERVER)/$(COREBUILD_NAME)
-	docker tag $(MW_COREBUILD_001) $(REGISTRY_SERVER)/$(MW_COREBUILD_001)
-	docker tag $(MW_COREBUILD_002) $(REGISTRY_SERVER)/$(MW_COREBUILD_002)
-	docker tag $(APPLICATION_BUILD_NAME) $(REGISTRY_SERVER)/$(APPLICATION_BUILD_NAME):latest
+	podman tag $(COREBUILD_NAME) $(REGISTRY_SERVER)/$(COREBUILD_NAME)
+	podman tag $(MW_COREBUILD_001) $(REGISTRY_SERVER)/$(MW_COREBUILD_001)
+	podman tag $(MW_COREBUILD_002) $(REGISTRY_SERVER)/$(MW_COREBUILD_002)
+	podman tag $(APPLICATION_BUILD_NAME) $(REGISTRY_SERVER)/$(APPLICATION_BUILD_NAME):latest
 
 tag_production:
-	docker tag $(COREBUILD_NAME):latest $(COREBUILD_NAME):production
-	docker tag $(MW_COREBUILD_001):latest $(MW_COREBUILD_001):production
-	docker tag $(MW_COREBUILD_002):latest $(MW_COREBUILD_002):production
-	docker tag $(APPLICATION_BUILD_NAME):latest $(APPLICATION_BUILD_NAME):production
+	podman tag $(COREBUILD_NAME):latest $(COREBUILD_NAME):production
+	podman tag $(MW_COREBUILD_001):latest $(MW_COREBUILD_001):production
+	podman tag $(MW_COREBUILD_002):latest $(MW_COREBUILD_002):production
+	podman tag $(APPLICATION_BUILD_NAME):latest $(APPLICATION_BUILD_NAME):production
 
 tag_registry:
-	docker tag $(COREBUILD_NAME) $(REGISTRY_SERVER)/$(COREBUILD_NAME)
-	docker tag $(MW_COREBUILD_001) $(REGISTRY_SERVER)/$(MW_COREBUILD_001)
-	docker tag $(MW_COREBUILD_002) $(REGISTRY_SERVER)/$(MW_COREBUILD_002)
-	docker tag $(APPLICATION_BUILD_NAME) $(REGISTRY_SERVER)/$(APPLICATION_BUILD_NAME):latest
+	podman tag $(COREBUILD_NAME) $(REGISTRY_SERVER)/$(COREBUILD_NAME)
+	podman tag $(MW_COREBUILD_001) $(REGISTRY_SERVER)/$(MW_COREBUILD_001)
+	podman tag $(MW_COREBUILD_002) $(REGISTRY_SERVER)/$(MW_COREBUILD_002)
+	podman tag $(APPLICATION_BUILD_NAME) $(REGISTRY_SERVER)/$(APPLICATION_BUILD_NAME):latest
 
 push:
 	atomic push -u $(USERNAME) -p $(PASSWORD) $(REGISTRY_SERVER)/$(COREBUILD_NAME):latest
