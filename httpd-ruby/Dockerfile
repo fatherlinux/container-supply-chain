@@ -6,7 +6,7 @@ FROM corebuild
 ENV RUBY_VERSION 2.6
 ENV HTTPD_VERSION 2.4
 
-RUN yum install -y --nogpgcheck rh-ruby26 rh-ruby26-ruby-devel rh-ruby26-rubygem-rake v8314 rh-ruby26-rubygem-bundler nodejs010 && \
+RUN yum install -y --nogpgcheck rh-ruby27 rh-ruby27-ruby-devel rh-ruby27-rubygem-rake v8314 rh-ruby27-rubygem-bundler nodejs010 && \
     yum clean all -y
 
 RUN chown -R 1001:0 /opt/app-root
